@@ -11,7 +11,7 @@ type DrawTrackOptions = {
 
 export function drawTrack(options: DrawTrackOptions) {
   const { ctx, from, to, via, width, color = 'gray' } = options;
-  
+
   ctx.save();
   ctx.beginPath();
   ctx.strokeStyle = color;

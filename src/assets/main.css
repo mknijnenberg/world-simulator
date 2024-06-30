@@ -1,9 +1,5 @@
 @import './base.css';
 
-:root {
-  --grid-max-width: 77.50rem;
-}
-
 #app {
   min-height: 100vh;
   max-width: var(--grid-max-width);

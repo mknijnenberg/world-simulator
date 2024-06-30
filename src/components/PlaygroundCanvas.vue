@@ -8,7 +8,7 @@ import { ref, onMounted } from 'vue'
 const props = defineProps<{
   width: number;
   height: number;
-}>()
+}>();
 
 const canvasRef = ref();
 const ctx = ref();

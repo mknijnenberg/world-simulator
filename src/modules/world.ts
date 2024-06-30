@@ -1,6 +1,7 @@
 import type { ColorTypes, Coordinates } from "@/types/global.types";
 import { drawTrack } from "./track";
 import { drawTrain } from "./train";
+import { drawGrid } from "./grid";
 
 type DrawWorldOptions = {
   ctx: CanvasRenderingContext2D;
@@ -30,6 +31,14 @@ export function drawWorld(options: DrawWorldOptions) {
     trainSpeed,
     colors,
   } = options;
+
+  drawGrid({
+    ctx,
+    width: ctx.canvas.width,
+    height: ctx.canvas.height,
+    cellSize: 50,
+    color: colors['grid'],
+  });
 
   drawTrack({
     ctx: ctx,
