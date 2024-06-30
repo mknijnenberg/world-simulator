@@ -1,0 +1,27 @@
+@import './base.css';
+
+:root {
+  --grid-max-width: 77.50rem;
+}
+
+#app {
+  min-height: 100vh;
+  max-width: var(--grid-max-width);
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: 2fr 8fr;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
