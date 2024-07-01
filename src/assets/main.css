@@ -5,7 +5,7 @@
   max-width: var(--grid-max-width);
   display: grid;
   margin: 0 auto;
-  grid-template-columns: 2fr 8fr;
+  grid-template-columns: 2fr 10fr;
 }
 
 a,

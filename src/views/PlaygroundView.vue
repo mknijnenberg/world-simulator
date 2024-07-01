@@ -1,13 +1,14 @@
 <template>
   <div class="playground">
-    <PlaygroundCanvas ref="canvas" :height="700" :width="700" />
+    <div class="playground-container">
+      <div class="board">
+        <PlaygroundCanvas ref="canvas" :height="700" :width="700" />
+      </div>
 
-    <PlaygroundControls
-      v-model:trackWidth="trackWidth"
-      v-model:carLength="carLength"
-      v-model:carCount="carCount"
-      v-model:carSpacing="carSpacing"
-      v-model:trainSpeed="trainSpeed" />
+      <div class="controls">
+        <PlaygroundControls />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,23 +16,30 @@
 import PlaygroundCanvas from '@/components/PlaygroundCanvas.vue';
 import PlaygroundControls from '@/components/PlaygroundControls.vue';
 import { drawWorld } from '@/modules/world';
-import { onMounted, ref, unref } from 'vue';
+import { useWorldStore } from '@/stores/world';
+import { onMounted, onUnmounted, ref, unref } from 'vue';
+
+const {
+  trackWidth,
+  carLength,
+  carCount,
+  carSpacing,
+  trainSpeed,
+  loopAnimation,
+} = useWorldStore();
 
 const canvas = ref();
 
 let frameCount = 0;
-const trackWidth = ref(50);
-const carLength = ref(40);
-const carCount = ref(7);
-const carSpacing = ref(10);
-const trainSpeed = ref(1);
+
+const animationFrame = ref();
 
 function animate() {
-  requestAnimationFrame(animate);
-
-  canvas.value.ctx.clearRect(0, 0, canvas.value.canvasWidth, canvas.value.canvasHeight);
+  animationFrame.value = requestAnimationFrame(animate);
 
   const computedStyleCanvasValue = getComputedStyle(canvas.value.ctx.canvas);
+
+  canvas.value.ctx.clearRect(0, 0, canvas.value.canvasWidth, canvas.value.canvasHeight);
 
   drawWorld({
     ctx: canvas.value.ctx,
@@ -62,14 +70,38 @@ function animate() {
 onMounted(() => {
   animate();
 })
+
+onUnmounted(() => {
+  cancelAnimationFrame(animationFrame.value);
+})
 </script>
 
 <style>
-@media (min-width: 1024px) {
-  .playground {
-    min-height: 100%;
-    display: flex;
-    align-items: center;
-  }
+.playground {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.playground-container {
+  min-height: 800px;
+  display: flex;
+  gap: 2rem;
+  align-items: start;
+}
+
+.board {
+  background-color: var(--color-background);
+  margin: 0 auto;
+  display: block;
+  border: 1px solid black;
+  padding: 1rem;
+}
+
+.controls {
+  background-color: var(--color-background);
+  padding: 1rem;
+  width: 10rem;
 }
 </style>
