@@ -33,16 +33,16 @@
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
 
-  --grid-max-width: 77.50rem;
+  --grid-max-width: 100rem;
 
   --world-color-car: #051051;
   --world-color-carContent: #222222;
   --world-color-connector: #000000;
-  --world-color-grid: #DDDDDD;
+  --world-color-grid: #dddddd;
   --world-color-locomotive: #051051;
-  --world-color-locomotiveAccent: #0A80A8;
-  --world-color-locomotiveWindow: #6BF6BF;
-  --world-color-track: #AAAAAA;
+  --world-color-locomotiveAccent: #0a80a8;
+  --world-color-locomotiveWindow: #6bf6bf;
+  --world-color-track: #aaaaaa;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -57,12 +57,12 @@
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
 
-    --world-color-car: #FAEFAE;
-    --world-color-carContent: #DDDDDD;
-    --world-color-connector: #FFFFFF;
-    --world-color-grid: #222222;
-    --world-color-locomotive: #FAEFAE;
-    --world-color-locomotiveAccent: #F57F57;
+    --world-color-car: #900930;
+    --world-color-carContent: #dddddd;
+    --world-color-connector: #ffffff;
+    --world-color-grid: #c0c0c0;
+    --world-color-locomotive: #faefae;
+    --world-color-locomotiveAccent: #f57f57;
     --world-color-locomotiveWindow: #940940;
     --world-color-track: #555555;
   }

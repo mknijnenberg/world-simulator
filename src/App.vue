@@ -6,6 +6,7 @@
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/playground">Playground</RouterLink>
+        <RouterLink to="/game">Game</RouterLink>
       </nav>
     </div>
   </header>
@@ -26,10 +27,6 @@ header {
   flex-direction: column;
   justify-content: center;
   line-height: 1.5;
-}
-
-main {
-  overflow: scroll;
 }
 
 .wrapper {

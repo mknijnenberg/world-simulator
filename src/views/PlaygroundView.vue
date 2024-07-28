@@ -13,33 +13,26 @@
 </template>
 
 <script setup lang="ts">
-import PlaygroundCanvas from '@/components/PlaygroundCanvas.vue';
-import PlaygroundControls from '@/components/PlaygroundControls.vue';
-import { drawWorld } from '@/modules/world';
-import { useWorldStore } from '@/stores/world';
-import { onMounted, onUnmounted, ref, unref } from 'vue';
+import PlaygroundCanvas from '@/components/PlaygroundCanvas.vue'
+import PlaygroundControls from '@/components/PlaygroundControls.vue'
+import { drawWorld } from '@/modules/playground/world'
+import { useWorldStore } from '@/stores/world'
+import { onMounted, onUnmounted, ref, unref } from 'vue'
 
-const {
-  trackWidth,
-  carLength,
-  carCount,
-  carSpacing,
-  trainSpeed,
-  loopAnimation,
-} = useWorldStore();
+const { trackWidth, carLength, carCount, carSpacing, trainSpeed, loopAnimation } = useWorldStore()
 
-const canvas = ref();
+// https://www.youtube.com/watch?v=pTJ_Ue5F_8s
 
-let frameCount = 0;
+const canvas = ref()
 
-const animationFrame = ref();
+let frameCount = 0
+
+const animationFrame = ref()
 
 function animate() {
-  animationFrame.value = requestAnimationFrame(animate);
+  const computedStyleCanvasValue = getComputedStyle(canvas.value.ctx.canvas)
 
-  const computedStyleCanvasValue = getComputedStyle(canvas.value.ctx.canvas);
-
-  canvas.value.ctx.clearRect(0, 0, canvas.value.canvasWidth, canvas.value.canvasHeight);
+  canvas.value.ctx.clearRect(0, 0, canvas.value.canvasWidth, canvas.value.canvasHeight)
 
   drawWorld({
     ctx: canvas.value.ctx,
@@ -53,26 +46,28 @@ function animate() {
     trainSpeed: unref(trainSpeed),
     frameCount,
     colors: {
-      car: computedStyleCanvasValue.getPropertyValue("--world-color-car"),
-      carContent: computedStyleCanvasValue.getPropertyValue("--world-color-carContent"),
-      connector: computedStyleCanvasValue.getPropertyValue("--world-color-connector"),
-      grid: computedStyleCanvasValue.getPropertyValue("--world-color-grid"),
-      locomotive: computedStyleCanvasValue.getPropertyValue("--world-color-locomotive"),
-      locomotiveAccent: computedStyleCanvasValue.getPropertyValue("--world-color-locomotiveAccent"),
-      locomotiveWindow: computedStyleCanvasValue.getPropertyValue("--world-color-locomotiveWindow"),
-      track: computedStyleCanvasValue.getPropertyValue("--world-color-track"),
-    },
-  });
+      car: computedStyleCanvasValue.getPropertyValue('--world-color-car'),
+      carContent: computedStyleCanvasValue.getPropertyValue('--world-color-carContent'),
+      connector: computedStyleCanvasValue.getPropertyValue('--world-color-connector'),
+      grid: computedStyleCanvasValue.getPropertyValue('--world-color-grid'),
+      locomotive: computedStyleCanvasValue.getPropertyValue('--world-color-locomotive'),
+      locomotiveAccent: computedStyleCanvasValue.getPropertyValue('--world-color-locomotiveAccent'),
+      locomotiveWindow: computedStyleCanvasValue.getPropertyValue('--world-color-locomotiveWindow'),
+      track: computedStyleCanvasValue.getPropertyValue('--world-color-track')
+    }
+  })
 
-  frameCount++;
-};
+  frameCount++
+
+  animationFrame.value = requestAnimationFrame(animate)
+}
 
 onMounted(() => {
-  animate();
+  animate()
 })
 
 onUnmounted(() => {
-  cancelAnimationFrame(animationFrame.value);
+  cancelAnimationFrame(animationFrame.value)
 })
 </script>
 

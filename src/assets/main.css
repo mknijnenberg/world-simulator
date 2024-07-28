@@ -2,10 +2,10 @@
 
 #app {
   min-height: 100vh;
-  max-width: var(--grid-max-width);
   display: grid;
   margin: 0 auto;
   grid-template-columns: 2fr 10fr;
+  width: var(--grid-max-width);
 }
 
 a,
@@ -19,5 +19,25 @@ a,
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+.game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.game-container {
+  position: relative;
+  width: 352px;
+  height: 198px;
+  outline: 1px solid var(--world-color-border);
+
+  transform: scale(3);
+
+  canvas {
+    image-rendering: pixelated;
   }
 }

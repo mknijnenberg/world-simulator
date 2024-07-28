@@ -15,8 +15,8 @@ const ctx = ref();
 
 defineExpose({
   el: canvasRef,
-  canvasHeight: props.height,
-  canvasWidth: props.width,
+  height: props.height,
+  width: props.width,
   ctx,
 });
 
